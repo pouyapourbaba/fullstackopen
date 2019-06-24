@@ -4,4 +4,10 @@ server recieves the new note and
 after saving it into DB responds
 to the browser with a json object
 end note
+
 server-->browser: {"message":"note created"}
+note over browser
+browser uses the JS code it had recieved 
+earlier, and renders the new note on the 
+DOM without sending requests to the server
+end note
