@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 
+// Statistics component
 const Statistics = ({ good, neutral, bad }) => {
   return (
     <div>
@@ -17,7 +18,7 @@ const Statistics = ({ good, neutral, bad }) => {
 };
 
 const App = () => {
-  // hooks
+  // State
   const [good, setGood] = useState(0);
   const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
