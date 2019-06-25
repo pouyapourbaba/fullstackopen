@@ -4,6 +4,13 @@ import "./index.css";
 
 // Statistics component
 const Statistics = ({ good, neutral, bad }) => {
+  if (good + neutral + bad === 0)
+    return (
+      <div>
+        <h2>statistics</h2>
+        <p>No feedback given</p>
+      </div>
+    );
   return (
     <div>
       <h2>statistics</h2>
@@ -11,8 +18,8 @@ const Statistics = ({ good, neutral, bad }) => {
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
       <p>all {good + neutral + bad}</p>
-      <p>average {good+bad+neutral !== 0 ? (good - bad) / (good + neutral + bad) : 0}</p>
-    <p>positive {good+bad+neutral !== 0 ? (good) / (good + neutral + bad) * 100 : 0} %</p>
+      <p>average {(good - bad) / (good + neutral + bad)}</p>
+      <p>positive {(good / (good + neutral + bad)) * 100}%</p>
     </div>
   );
 };
