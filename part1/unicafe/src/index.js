@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 import "./index.css";
 
 const Statistics = ({ good, neutral, bad }) => {
-    console.log((good - bad))
   return (
     <div>
       <h2>statistics</h2>
       <p>good {good}</p>
       <p>neutral {neutral}</p>
       <p>bad {bad}</p>
+      <p>all {good + neutral + bad}</p>
+      <p>average {good+bad+neutral !== 0 ? (good - bad) / (good + neutral + bad) : 0}</p>
+    <p>positive {good+bad+neutral !== 0 ? (good) / (good + neutral + bad) * 100 : 0} %</p>
     </div>
   );
 };
