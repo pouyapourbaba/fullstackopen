@@ -18,7 +18,7 @@ function App() {
     );
     setMatched(matched);
   };
-  console.log(matched)
+
   return (
     <div className="App">
       find countries <input onChange={handleQueryChange} />
