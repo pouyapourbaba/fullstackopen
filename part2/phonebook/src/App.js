@@ -41,10 +41,23 @@ function App() {
   const submitPerson = e => {
     e.preventDefault();
     const newPerson = { name: newName, number: newNumber };
-    const doesExist = persons.filter(person => person.name === newPerson.name);
+    const existingPerson = persons.filter(
+      person => person.name === newPerson.name
+    );
 
-    doesExist.length !== 0
-      ? alert(`${newPerson.name} is already added to phonebook`)
+    existingPerson.length !== 0
+      ? window.confirm(
+          `${
+            newPerson.name
+          } is already added to phonebook, replace the old number with a new one?`
+        ) &&
+        personServices
+          .updateNumber(newPerson, existingPerson[0].id)
+          .then(res =>
+            setPersons(
+              persons.map(person => (person.id !== res.id ? person : res))
+            )
+          )
       : personServices
           .postPerson(newPerson)
           .then(res => setPersons(persons.concat(res)));

@@ -25,8 +25,17 @@ const deletePerson = id => {
     .catch(error => alert("Person not deleted", error.message));
 };
 
+// update the number if the user exists
+const updateNumber = (person, id) => {
+  const request = axios.put(`${baseUrl}/${id}`, person);
+  return request
+    .then(res => res.data)
+    .catch(error => alert("Number not updated", error.message));
+};
+
 export default {
   getAll,
   postPerson,
-  deletePerson
+  deletePerson,
+  updateNumber
 };
