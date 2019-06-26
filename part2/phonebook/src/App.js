@@ -45,7 +45,9 @@ function App() {
     const doesExist = persons.filter(person => person.name === newPerson.name);
     doesExist.length !== 0
       ? alert(`${newPerson.name} is already added to phonebook`)
-      : setPersons(persons.concat(newPerson));
+      : axios
+          .post("http://localhost:3001/persons", newPerson)
+          .then(res => setPersons(persons.concat(res.data)));
   };
 
   return (
