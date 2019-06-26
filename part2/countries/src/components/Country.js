@@ -4,7 +4,7 @@ import axios from "axios";
 const Country = ({ country }) => {
   const [weather, setWeather] = useState();
 
-  const apiKey = "dc190e52a9aa4618bce124434192606";
+  const apiKey = "";
   useEffect(() => {
     axios
       .get(
@@ -29,7 +29,11 @@ const Country = ({ country }) => {
         ))}
       </ul>
       <div style={{ width: "150px" }}>
-        <img src={country.flag} alt={`Flag of ${country.name}`} style={{ width: "100%" }} />
+        <img
+          src={country.flag}
+          alt={`Flag of ${country.name}`}
+          style={{ width: "100%" }}
+        />
       </div>
       {weather && (
         <div>
@@ -40,7 +44,7 @@ const Country = ({ country }) => {
               {weather.current.temp_c} Celsius
             </span>
           </h4>
-          <img src={weather.current.condition.icon} alt={`icon of weather`}/>
+          <img src={weather.current.condition.icon} alt={`icon of weather`} />
           <h4>
             Wind:{" "}
             <span style={{ fontWeight: "normal" }}>

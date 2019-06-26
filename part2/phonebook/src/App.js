@@ -42,12 +42,20 @@ function App() {
     e.preventDefault();
     const newPerson = { name: newName, number: newNumber };
     const doesExist = persons.filter(person => person.name === newPerson.name);
-    
+
     doesExist.length !== 0
       ? alert(`${newPerson.name} is already added to phonebook`)
       : personServices
           .postPerson(newPerson)
           .then(res => setPersons(persons.concat(res)));
+  };
+
+  // delete person
+  const deletePerson = person => {
+    window.confirm(`Delete ${person.name}?`) &&
+      personServices
+        .deletePerson(person.id)
+        .then(res => setPersons(persons.filter(p => p.id !== person.id)));
   };
 
   return (
@@ -64,7 +72,7 @@ function App() {
         handleNumberChange={handleNumberChange}
       />
       <h2>Numbers</h2>
-      <Persons persons={persons} />
+      <Persons persons={persons} deletePerson={deletePerson} />
     </div>
   );
 }
