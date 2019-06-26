@@ -29,7 +29,7 @@ const Country = ({ country }) => {
         ))}
       </ul>
       <div style={{ width: "150px" }}>
-        <img src={country.flag} style={{ width: "100%" }} />
+        <img src={country.flag} alt={`Flag of ${country.name}`} style={{ width: "100%" }} />
       </div>
       {weather && (
         <div>
@@ -40,7 +40,7 @@ const Country = ({ country }) => {
               {weather.current.temp_c} Celsius
             </span>
           </h4>
-          <img src={weather.current.condition.icon} />
+          <img src={weather.current.condition.icon} alt={`icon of weather`}/>
           <h4>
             Wind:{" "}
             <span style={{ fontWeight: "normal" }}>
