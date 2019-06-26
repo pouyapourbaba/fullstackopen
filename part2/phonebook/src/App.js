@@ -3,6 +3,7 @@ import axios from "axios";
 import Filter from "./components/Filter";
 import PersonForm from "./components/PersonForm";
 import Persons from "./components/Persons";
+import personServices from "./services/persons";
 
 function App() {
   const [persons, setPersons] = useState([]);
@@ -12,9 +13,7 @@ function App() {
 
   // fetch initail data
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then(res => setPersons(res.data));
+    personServices.getAll().then(persons => setPersons(persons));
   }, []);
 
   // change event for name input
@@ -43,11 +42,12 @@ function App() {
     e.preventDefault();
     const newPerson = { name: newName, number: newNumber };
     const doesExist = persons.filter(person => person.name === newPerson.name);
+    
     doesExist.length !== 0
       ? alert(`${newPerson.name} is already added to phonebook`)
-      : axios
-          .post("http://localhost:3001/persons", newPerson)
-          .then(res => setPersons(persons.concat(res.data)));
+      : personServices
+          .postPerson(newPerson)
+          .then(res => setPersons(persons.concat(res)));
   };
 
   return (
